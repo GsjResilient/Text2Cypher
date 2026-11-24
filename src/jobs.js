@@ -18,7 +18,7 @@ export class JobManager {
       for(const item of job.items) {
         if(job.controller.signal.aborted)break;
         job.currentQuestion=item.question;
-        const result=await this.agent(item.question,item.level,{signal:job.controller.signal,context:item.context,outputContract:item.columns?{columns:item.columns,types:item.columnTypes,instruction:item.output}:null,summarize:!job.evaluation,onProgress:p=>{job.progress=p;}});
+        const result=await this.agent(item.question,item.level,{signal:job.controller.signal,context:item.context,outputContract:item.columns?{columns:item.columns,types:item.columnTypes,instruction:item.output}:null,summarize:true,onProgress:p=>{job.progress=p;}});
         if(job.evaluation){const grading=await judge(item,result);job.results.push({...result,...grading,testId:item.id});}
         else job.results.push(result);
         job.completed++;

@@ -1,18 +1,23 @@
 import {queryAgent} from '../src/agent.js';
 import {judge,stats} from '../src/evaluation.js';
 import {load,save,id} from '../src/store.js';
-import {closeDriver} from '../src/graph.js';
+import {closeDriver,schema} from '../src/graph.js';
 import {mkdir,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
 const selected=process.argv.find(a=>a.startsWith('--ids='))?.slice(6).split(',');
 const tests=(await load('evaluation.json')).filter(t=>!selected||selected.includes(t.id));
 const run={id:id(),createdAt:new Date().toISOString(),total:tests.length,completed:0,status:'running',results:[]};
 const previous=process.argv.includes('--resume')?(await load('evaluation-runs.json')).flatMap(r=>r.results):[];
 try {
+ const currentSchema=await schema();
+ const stale=tests.filter(test=>test.schemaFingerprint!==currentSchema.fingerprint);
+ if(stale.length)throw new Error(`评测集与当前图谱不匹配（${stale.map(test=>test.id).join('、')}），禁止消耗模型额度运行无效评测`);
  for(const test of tests){
-  const reused=previous.find(r=>r.testId===test.id&&r.question===test.question&&r.graphVersion===test.graphVersion&&(!process.argv.includes('--retry-failed')||r.verdict==='correct'));
+  const testSignature=createHash('sha256').update(JSON.stringify({question:test.question,columns:test.columns,expected:test.expected,output:test.output,schemaFingerprint:test.schemaFingerprint})).digest('hex');
+  const reused=previous.find(r=>r.testId===test.id&&r.testSignature===testSignature&&r.schemaFingerprint===currentSchema.fingerprint&&test.schemaFingerprint===currentSchema.fingerprint&&(!process.argv.includes('--retry-failed')||r.verdict==='correct'));
   if(reused){run.results.push({...reused,reused:true});run.completed++;console.log(`${test.id} reused ${reused.verdict}`);continue;}
-  const result=await queryAgent(test.question,test.level,{summarize:false,outputContract:{columns:test.columns,types:test.columnTypes,instruction:test.output}});
-  const grading=await judge(test,result);run.results.push({...result,...grading,testId:test.id});run.completed++;
+  const result=await queryAgent(test.question,test.level,{summarize:true,outputContract:{columns:test.columns,types:test.columnTypes,instruction:test.output}});
+  const grading=await judge(test,result,{schemaProvider:async()=>currentSchema});run.results.push({...result,...grading,testId:test.id,testSignature});run.completed++;
   console.log(`${test.id} ${result.status} ${grading.verdict}: ${grading.reason}`);
   await save('evaluation-progress.json',run);
  }

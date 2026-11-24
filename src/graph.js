@@ -1,10 +1,11 @@
 import neo4j from 'neo4j-driver';
-import {config} from './config.js';
-import {validateCypher} from './validator.js';
+import {createHash} from 'node:crypto';
+import {config,configured} from './config.js';
+import {validateCypher,validateSchemaReferences} from './validator.js';
 
 let driver;
 export function getDriver() {
-  if (!config.uri || !config.password) throw new Error('请先配置 Neo4j 连接信息');
+  if (!configured(config.uri) || !configured(config.password)) throw new Error('请先配置真实的 Neo4j 连接信息');
   return driver ||= neo4j.driver(config.uri, neo4j.auth.basic(config.user,config.password), {connectionTimeout:7000,connectionAcquisitionTimeout:8000,maxConnectionPoolSize:8});
 }
 export async function closeDriver() {await driver?.close();}
@@ -20,6 +21,15 @@ export function plain(value) {
   return value;
 }
 let cached;
+export function fingerprintSchema(value) {
+  const stable={
+    graphVersion:value.graphVersion,
+    nodes:(value.nodes||[]).map(node=>({label:node.label,properties:[...(node.properties||[])].sort()})).sort((a,b)=>a.label.localeCompare(b.label)),
+    relations:(value.relations||[]).map(relation=>({type:relation.type,endpoints:(relation.endpoints||[]).map(endpoint=>({source:[...(endpoint.source||[])].sort(),target:[...(endpoint.target||[])].sort()})).sort((a,b)=>JSON.stringify(a).localeCompare(JSON.stringify(b)))})).sort((a,b)=>a.type.localeCompare(b.type)),
+    counts:value.counts||{},
+  };
+  return createHash('sha256').update(JSON.stringify(stable)).digest('hex');
+}
 export async function schema(refresh = false) {
   if (cached && !refresh && Date.now()-cached.time < 300000) return cached.value;
   const labels = await read('CALL db.labels() YIELD label RETURN label');
@@ -47,7 +57,14 @@ export async function schema(refresh = false) {
     for(const node of nodes) node.properties=[...new Set(metadata.records.filter(r=>r.get('nodeLabels').includes(node.label)).map(r=>r.get('propertyName')).filter(Boolean))];
     completeProperties=true;
   }catch{/* Metadata procedure may be restricted on some installations. */}
-  const value={nodes,relations,graphVersion:config.graphVersion,completeProperties,propertyKeys:properties.records.map(r=>r.get('propertyKey')),note:completeProperties?'节点属性取自全库元数据；示例属性值为采样。':'节点属性为采样，propertyKeys 为全库属性名；不能以采样缺失推断属性不存在。',fetchedAt:new Date().toISOString()};
+  const nodeCounts=await read('MATCH (n) WHERE n.`图谱版本`=$version UNWIND labels(n) AS label RETURN label, count(*) AS count',{version:config.graphVersion});
+  const relationCounts=await read('MATCH ()-[r]->() WHERE r.`图谱版本`=$version RETURN type(r) AS type, count(*) AS count',{version:config.graphVersion});
+  const counts={
+    nodes:Object.fromEntries(nodeCounts.records.map(record=>[record.get('label'),plain(record.get('count'))])),
+    relations:Object.fromEntries(relationCounts.records.map(record=>[record.get('type'),plain(record.get('count'))])),
+  };
+  const value={nodes,relations,counts,graphVersion:config.graphVersion,completeProperties,propertyKeys:properties.records.map(r=>r.get('propertyKey')),note:completeProperties?'节点属性取自全库元数据；示例属性值为采样。':'节点属性为采样，propertyKeys 为全库属性名；不能以采样缺失推断属性不存在。',fetchedAt:new Date().toISOString()};
+  value.fingerprint=fingerprintSchema(value);
   cached={time:Date.now(),value};return value;
 }
 export async function candidates(question,extraTerms=[]) {
@@ -58,6 +75,7 @@ export async function candidates(question,extraTerms=[]) {
 }
 export async function execute(cypher, parameters = {}) {
   const query=validateCypher(cypher,config.maxHops);
+  validateSchemaReferences(query,await schema());
   const explain=await read(`EXPLAIN ${query}`,parameters);
   if (explain.summary.queryType !== 'r') throw new Error('数据库执行计划未确认该语句为只读');
   const invalid=(explain.summary.notifications||[]).filter(n=>/Unknown(Label|RelationshipType|PropertyKey)/i.test(n.code));

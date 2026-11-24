@@ -1,3 +1,4 @@
+export const configured=value=>typeof value==='string'&&value.trim()!==''&&!/replace_with|your-host|changeme/i.test(value);
 export const config = {
   port: Number(process.env.PORT || 3210),
   baseUrl: process.env.SILICONFLOW_BASE_URL || 'https://api.siliconflow.cn/v1',

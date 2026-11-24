@@ -29,7 +29,7 @@ export async function queryAgent(question,level='simple',options={}) {
   const log=(stage,detail)=>{result.trace.push({stage,detail,time:new Date().toISOString()});onProgress({stage,detail});};
   const check=()=>signal?.throwIfAborted();
   try {
-    check();const structure=await schema();log('Schema',`读取 ${structure.nodes.length} 种节点、${structure.relations.length} 种关系，版本 ${config.graphVersion}`);
+    check();const structure=await schema();result.schemaFingerprint=structure.fingerprint||null;log('Schema',`读取 ${structure.nodes.length} 种节点、${structure.relations.length} 种关系，版本 ${config.graphVersion}，指纹 ${structure.fingerprint?.slice(0,12)||'未提供'}`);
     let terms=[];
     if(!/[A-Za-z_][A-Za-z0-9_.-]{2,}/.test(question)) {
       try {const parsed=await chatJson([{role:'system',content:'从问题中提取具体代码对象名称，排除服务、接口等泛称。返回JSON {"terms":[]}，无具体名称则空数组。'},{role:'user',content:question}],250,{signal});terms=Array.isArray(parsed.terms)?parsed.terms.filter(t=>typeof t==='string').slice(0,6):[];}catch(e){check();log('实体识别降级',e.message);}
@@ -40,7 +40,7 @@ export async function queryAgent(question,level='simple',options={}) {
     const methods=entities.filter(e=>e.labels.includes('方法'));
     const ambiguous=methods.length>1&&new Set(methods.map(e=>e.properties['方法名'])).size===1&&!methods.some(e=>question.includes(e.properties['全限定名']))&&!/所有同名|全部同名|所有.*方法/.test(question)&&!context.selectedEntity;
     if(ambiguous&&!context.clarification){result.status='clarification';result.clarification='存在同名方法，请选择具体的类与方法，或补充查询范围。';result.candidates=methods;log('等待澄清',result.clarification);await history(result);return result;}
-    check();const retrieval=await selectExamples(question,await load('knowledge.json'),level,signal);
+    check();const retrieval=await selectExamples(question,await load('knowledge.json'),level,signal,structure);
     result.retrieval={mode:retrieval.mode,ids:retrieval.examples.map(e=>e.id)};log('示例检索',`${retrieval.mode}，${retrieval.examples.length} 个示例`);
     let plan;
     for(let attempt=0;attempt<2;attempt++) {
@@ -55,6 +55,7 @@ export async function queryAgent(question,level='simple',options={}) {
         try {
           const parameters=resolveBindings(q,result.queries,i);check();log('校验与执行',`${q.name||i+1}\n${q.cypher}`);
           const data=await execute(q.cypher,parameters);check();
+          if(!intermediate&&/(完整)?链路|拓扑|调用链|消息流/.test(question)&&data.rows.length&&!data.graph.nodes.length)throw new Error('问题要求链路或拓扑，但查询只返回了标量属性。请在 RETURN 中加入路径 p，或直接返回节点和关系变量。');
           if(!intermediate&&outputContract?.columns&&data.columns){const missing=outputContract.columns.filter(c=>!data.columns.includes(c));if(missing.length)throw new Error(`最终结果缺少要求的输出列：${missing.join('、')}。请在此子查询中返回全部必需列，布尔判断应保留未匹配项并返回 false。`);}
           if(!intermediate&&outputContract?.types){for(const [column,type] of Object.entries(outputContract.types)){if(['string','number','boolean'].includes(type)&&data.rows.some(r=>r[column]!==null&&r[column]!==undefined&&typeof r[column]!==type))throw new Error(`输出列 ${column} 必须为 ${type}，请返回要求的属性值而非节点或路径对象。`);}}
           output={...q,parameters,...data,intermediate,status:'success'};break;

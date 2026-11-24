@@ -14,7 +14,7 @@
       "prefix": "ts-admin"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:23.840Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -67,7 +67,7 @@
       "version": "master-to-dd92845"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:23.857Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -103,7 +103,7 @@
       "type": "CONTROLLER"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:23.875Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -139,7 +139,7 @@
       "name": "foodsearch.controller.FoodController"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:23.894Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -175,7 +175,7 @@
       "name": "foodsearch.service.FoodServiceImpl.getAllFood"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:23.925Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -211,7 +211,7 @@
       "name": "foodsearch.service.FoodServiceImpl"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:23.944Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -246,7 +246,7 @@
       "version": "master-to-dd92845"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:23.962Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -300,7 +300,7 @@
       "queue": "email"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:23.978Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -348,7 +348,7 @@
       "prefix": "ts-order"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:23.996Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -384,7 +384,7 @@
       "name": "foodsearch.controller.FoodController.getAllFood"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:24.028Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -420,7 +420,7 @@
       "service": "ts-order-service"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:24.047Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -495,7 +495,7 @@
       "service": "ts-preserve-service"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:24.066Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -567,7 +567,7 @@
       "target": "ts-order-service"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:24.083Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -630,7 +630,7 @@
       "service": "ts-food-service"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:24.104Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -666,7 +666,7 @@
       "service": "ts-food-service"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:24.123Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -702,7 +702,7 @@
       "queue": "food_delivery"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:24.140Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -738,7 +738,7 @@
       "target": "ts-delivery-service"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:24.157Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -774,7 +774,7 @@
       "source": "ts-preserve-service"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:24.173Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -822,7 +822,7 @@
       "method": "foodsearch.controller.FoodController.getAllFood"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:24.203Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -858,7 +858,7 @@
       "method": "foodsearch.controller.FoodController.getAllFood"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:24.228Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -924,7 +924,7 @@
       "service": "ts-travel-service"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:24.246Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -966,7 +966,7 @@
       "service": "ts-food-service"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:24.263Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -1002,7 +1002,7 @@
       "service": "ts-food-service"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:24.535Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -1039,7 +1039,7 @@
       "service": "ts-preserve-service"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:24.554Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -1094,7 +1094,7 @@
       "target": "ts-delivery-service"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:24.574Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -1131,7 +1131,7 @@
       "queue": "food_delivery"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:24.591Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -1170,7 +1170,7 @@
       "queue": "email"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:24.611Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -1218,7 +1218,7 @@
       "method": "foodsearch.mq.RabbitSend.send"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:24.649Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -1266,7 +1266,7 @@
       "method": "foodsearch.controller.FoodController.getAllFood"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:24.672Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",
@@ -1314,7 +1314,7 @@
       "target": "ts-notification-service"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "独立参考题（AI 编写，待人工复核）",
+    "origin": "独立参考题（团队整理）",
     "checkedAt": "2026-11-24T13:53:24.691Z",
     "executionChecked": true,
     "schemaFingerprint": "ab74a18a89fd21fb107f7ed1aefbb22a5e4ee4be8da26d96fbff35fdfb8c0257",

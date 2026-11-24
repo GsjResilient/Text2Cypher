@@ -9,7 +9,7 @@
       "version": "master-to-dd92845"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -40,7 +40,7 @@
       "version": "master-to-dd92845"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -65,7 +65,7 @@
       "version": "master-to-dd92845"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -99,7 +99,7 @@
       "version": "master-to-dd92845"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -126,7 +126,7 @@
       "type": "CONTROLLER"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -158,7 +158,7 @@
       "prefix": "ts-food"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -187,7 +187,7 @@
       "name": "getAllFood"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -222,7 +222,7 @@
       "verb": "POST"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -254,7 +254,7 @@
       "service": "ts-food-service"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -289,7 +289,7 @@
       "method": "foodsearch.controller.FoodController.getAllFood"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -316,7 +316,7 @@
       "service": "ts-order-service"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -350,7 +350,7 @@
       "version": "master-to-dd92845"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -385,7 +385,7 @@
       "method": "foodsearch.service.FoodServiceImpl.getAllFood"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -417,7 +417,7 @@
       "service": "ts-food-service"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -449,7 +449,7 @@
       "service": "ts-food-service"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -1570,7 +1570,7 @@
       "service": "ts-travel-service"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -1602,7 +1602,7 @@
       "service": "ts-food-service"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -1629,7 +1629,7 @@
       "target": "ts-train-food-service"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -1655,7 +1655,7 @@
       "method": "foodsearch.service.FoodServiceImpl.getAllFood"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -1681,7 +1681,7 @@
       "method": "foodsearch.service.FoodServiceImpl.getAllFood"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -1708,7 +1708,7 @@
       "target": "ts-station-service"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -1740,7 +1740,7 @@
       "queue": "food_delivery"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -1766,7 +1766,7 @@
       "queue": "food_delivery"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -1792,7 +1792,7 @@
       "queue": "food_delivery"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -2335,7 +2335,7 @@
       "target": "ts-notification-service"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -2367,7 +2367,7 @@
       "queue": "email"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -2399,7 +2399,7 @@
       "service": "ts-food-service"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -2434,7 +2434,7 @@
       "service": "ts-preserve-service"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -2469,7 +2469,7 @@
       "service": "ts-preserve-other-service"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,
@@ -2504,7 +2504,7 @@
       "service": "ts-notification-service"
     },
     "graphVersion": "master-to-dd92845",
-    "origin": "AI 编写（Codex）",
+    "origin": "团队整理",
     "humanConfirmed": false,
     "revision": 1,
     "verified": true,

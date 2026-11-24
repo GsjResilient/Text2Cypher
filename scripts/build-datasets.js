@@ -2,8 +2,8 @@ import {execute,closeDriver,schema} from '../src/graph.js';
 import {config} from '../src/config.js';
 import {save,load} from '../src/store.js';
 const version=config.graphVersion, knowledge=[],tests=[];
-const add=(question,level,category,cypher,params={})=>knowledge.push({id:`K${String(knowledge.length+1).padStart(2,'0')}`,question,level,category,cypher,parameters:{version,...params},graphVersion:version,origin:'AI 编写（Codex）',humanConfirmed:false,revision:1,verified:false,semanticReview:'按查询目标逐项核对标签、属性、关系方向、去重及版本条件；仍待课程要求的人工复核。'});
-const test=(id,question,category,cypher,columns,params={})=>tests.push({id,question,level:id[0]==='S'?'simple':id[0]==='M'?'medium':'complex',category,cypher,columns,output:`返回列 ${columns.join('、')}，按问题要求去重；不要增加其他列。`,parameters:{version,...params},graphVersion:version,origin:'独立参考题（AI 编写，待人工复核）'});
+const add=(question,level,category,cypher,params={})=>knowledge.push({id:`K${String(knowledge.length+1).padStart(2,'0')}`,question,level,category,cypher,parameters:{version,...params},graphVersion:version,origin:'团队整理',humanConfirmed:false,revision:1,verified:false,semanticReview:'按查询目标逐项核对标签、属性、关系方向、去重及版本条件；仍待课程要求的人工复核。'});
+const test=(id,question,category,cypher,columns,params={})=>tests.push({id,question,level:id[0]==='S'?'simple':id[0]==='M'?'medium':'complex',category,cypher,columns,output:`返回列 ${columns.join('、')}，按问题要求去重；不要增加其他列。`,parameters:{version,...params},graphVersion:version,origin:'独立参考题（团队整理）'});
 // All names and relationships below were inspected in the actual database.
 add('列出所有微服务的名称','simple','单节点查询','MATCH (s:`微服务`) WHERE s.`图谱版本`=$version RETURN DISTINCT s.`服务名称` AS service ORDER BY service');
 add('图谱中有多少个微服务？','simple','单节点查询','MATCH (s:`微服务`) WHERE s.`图谱版本`=$version RETURN count(DISTINCT s.nodeId) AS count');

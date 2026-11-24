@@ -1,0 +1,23 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {JSDOM} from 'jsdom';
+const html=await readFile(new URL('../public/index.html',import.meta.url),'utf8');
+const script=await readFile(new URL('../public/app.js',import.meta.url),'utf8');
+const tick=()=>new Promise(r=>setTimeout(r,30));
+test('前端：页面切换、单条查询、数据/Cypher 展示、澄清选择和知识库表单',async()=>{
+ const dom=new JSDOM(html,{url:'http://localhost:3210',runScripts:'outside-only'});const w=dom.window,d=w.document;
+ const calls=[];let query={id:'j1',total:1,status:'success',completed:1,results:[{id:'r1',question:'列出微服务',level:'simple',status:'success',summary:'1 个服务',caveats:['最多200行'],graph:{nodes:[],edges:[]},queries:[{name:'服务列表',cypher:'MATCH (s) RETURN s',parameters:{},rows:[{service:'ts-food-service'}]}],trace:[{time:new Date().toISOString(),stage:'执行',detail:'完成'}]}]};
+ w.fetch=async(url,options={})=>{calls.push({url,options});let data=[];if(url==='/api/health')data={model:'DeepSeek',graphVersion:'test'};if(url==='/api/query')data={id:'j1',total:1};if(url==='/api/jobs/j1')data=query;if(url==='/api/schema')data={nodes:[{label:'方法',properties:['方法名']}],relations:[],note:'真实'};return {ok:true,json:async()=>data};};
+ w.confirm=()=>true;w.HTMLDialogElement.prototype.showModal=function(){this.open=true;};w.HTMLDialogElement.prototype.close=function(){this.open=false;};w.eval(script);await tick();
+ d.querySelector('[data-level="complex"]').click();assert.match(d.querySelector('#level-description').textContent,/跨服务/);
+ d.querySelector('#question').value='列出所有微服务';d.querySelector('#query-form').dispatchEvent(new w.Event('submit',{cancelable:true}));await tick();
+ assert.equal(d.querySelector('#results').hidden,false);assert.match(d.querySelector('#answer').textContent,/1 个服务/);assert.match(d.querySelector('#data-panel').textContent,/ts-food-service/);
+ d.querySelector('[data-result-tab="cypher"]').click();assert.equal(d.querySelector('#cypher-panel').hidden,false);assert.match(d.querySelector('#cypher-panel').textContent,/MATCH/);
+ query={...query,results:[{...query.results[0],status:'clarification',clarification:'请选择方法',candidates:[{id:'entity1',labels:['方法'],properties:{'全限定名':'x.getAllFood','方法签名':'x()'}}],queries:[]}]};
+ d.querySelector('#query-form').dispatchEvent(new w.Event('submit',{cancelable:true}));await tick();assert.equal(d.querySelector('#clarification').hidden,false);d.querySelector('.candidate').click();await tick();
+ const posted=calls.filter(c=>c.url==='/api/query').map(c=>JSON.parse(c.options.body));assert.equal(posted.at(-1).context.selectedEntityId,'entity1');
+ d.querySelector('[data-page="knowledge"]').click();await tick();d.querySelector('#new-example').click();assert.equal(d.querySelector('#knowledge-dialog').open,true);
+ d.querySelector('#example-question').value='<img src=x onerror=alert(1)>';d.querySelector('#example-cypher').value='MATCH (n) RETURN n';d.querySelector('#example-parameters').value='{}';d.querySelector('#knowledge-form').dispatchEvent(new w.Event('submit',{cancelable:true}));await tick();assert.ok(calls.some(c=>c.url==='/api/knowledge'&&c.options.method==='POST'));
+ d.querySelector('[data-page="schema"]').click();await tick();assert.match(d.querySelector('#schema-content').textContent,/方法名/);dom.window.close();
+});

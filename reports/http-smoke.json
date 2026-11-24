@@ -1,0 +1,10 @@
+{
+  "jobId": "85fe3cdd-c0a8-4ae4-a30f-e8cc84b59d70",
+  "checks": {
+    "query": true,
+    "rows": 2,
+    "summary": true,
+    "history": true,
+    "report": true
+  }
+}

@@ -1,0 +1,1199 @@
+[
+  {
+    "id": "S01",
+    "question": "名称以 ts-admin 开头的微服务有哪些？只返回 service。",
+    "level": "simple",
+    "category": "属性过滤",
+    "cypher": "MATCH (s:`微服务`) WHERE s.`图谱版本`=$version AND s.`服务名称` STARTS WITH $prefix RETURN DISTINCT s.`服务名称` AS service",
+    "columns": [
+      "service"
+    ],
+    "output": "只返回以下列：service（服务名称，类型 string）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "prefix": "ts-admin"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T03:57:32.499Z",
+    "executionChecked": true,
+    "rowCount": 5,
+    "preview": [
+      {
+        "service": "ts-admin-basic-info-service"
+      },
+      {
+        "service": "ts-admin-order-service"
+      },
+      {
+        "service": "ts-admin-route-service"
+      }
+    ],
+    "expected": [
+      {
+        "service": "ts-admin-basic-info-service"
+      },
+      {
+        "service": "ts-admin-order-service"
+      },
+      {
+        "service": "ts-admin-route-service"
+      },
+      {
+        "service": "ts-admin-travel-service"
+      },
+      {
+        "service": "ts-admin-user-service"
+      }
+    ],
+    "columnTypes": {
+      "service": "string"
+    }
+  },
+  {
+    "id": "S02",
+    "question": "当前图谱中消息队列节点有多少个？返回 count。",
+    "level": "simple",
+    "category": "基础计数",
+    "cypher": "MATCH (q:`消息队列`) WHERE q.`图谱版本`=$version RETURN count(DISTINCT q.nodeId) AS count",
+    "columns": [
+      "count"
+    ],
+    "output": "只返回以下列：count（去重数量，类型 number）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T03:57:32.603Z",
+    "executionChecked": true,
+    "rowCount": 1,
+    "preview": [
+      {
+        "count": 5
+      }
+    ],
+    "expected": [
+      {
+        "count": 5
+      }
+    ],
+    "columnTypes": {
+      "count": "number"
+    }
+  },
+  {
+    "id": "S03",
+    "question": "当前图谱中共有多少个 Controller 类？返回 count。",
+    "level": "simple",
+    "category": "属性过滤计数",
+    "cypher": "MATCH (c:`类`) WHERE c.`图谱版本`=$version AND c.`类类型`=$type RETURN count(DISTINCT c.nodeId) AS count",
+    "columns": [
+      "count"
+    ],
+    "output": "只返回以下列：count（去重数量，类型 number）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "type": "CONTROLLER"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T03:57:32.700Z",
+    "executionChecked": true,
+    "rowCount": 1,
+    "preview": [
+      {
+        "count": 105
+      }
+    ],
+    "expected": [
+      {
+        "count": 105
+      }
+    ],
+    "columnTypes": {
+      "count": "number"
+    }
+  },
+  {
+    "id": "S04",
+    "question": "查找全限定名为 foodsearch.controller.FoodController 的类，返回包名 package。",
+    "level": "simple",
+    "category": "属性过滤",
+    "cypher": "MATCH (c:`类`) WHERE c.`图谱版本`=$version AND c.`全限定名`=$name RETURN DISTINCT c.`包名` AS package",
+    "columns": [
+      "package"
+    ],
+    "output": "只返回以下列：package（包名，类型 string）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "name": "foodsearch.controller.FoodController"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T03:57:32.760Z",
+    "executionChecked": true,
+    "rowCount": 1,
+    "preview": [
+      {
+        "package": "foodsearch.controller"
+      }
+    ],
+    "expected": [
+      {
+        "package": "foodsearch.controller"
+      }
+    ],
+    "columnTypes": {
+      "package": "string"
+    }
+  },
+  {
+    "id": "S05",
+    "question": "foodsearch.service.FoodServiceImpl.getAllFood 方法的返回类型是什么？返回 returnType。",
+    "level": "simple",
+    "category": "方法属性",
+    "cypher": "MATCH (m:`方法`) WHERE m.`图谱版本`=$version AND m.`全限定名`=$name RETURN DISTINCT m.`返回类型` AS returnType",
+    "columns": [
+      "returnType"
+    ],
+    "output": "只返回以下列：returnType（方法返回类型，类型 string）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "name": "foodsearch.service.FoodServiceImpl.getAllFood"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T03:57:32.818Z",
+    "executionChecked": true,
+    "rowCount": 1,
+    "preview": [
+      {
+        "returnType": "edu.fudan.common.util.Response"
+      }
+    ],
+    "expected": [
+      {
+        "returnType": "edu.fudan.common.util.Response"
+      }
+    ],
+    "columnTypes": {
+      "returnType": "string"
+    }
+  },
+  {
+    "id": "S06",
+    "question": "foodsearch.service.FoodServiceImpl 类属于哪个微服务？返回 service。",
+    "level": "simple",
+    "category": "单跳归属",
+    "cypher": "MATCH (c:`类`)-[:`归属于`]->(s:`微服务`) WHERE c.`图谱版本`=$version AND c.`全限定名`=$name RETURN DISTINCT s.`服务名称` AS service",
+    "columns": [
+      "service"
+    ],
+    "output": "只返回以下列：service（服务名称，类型 string）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "name": "foodsearch.service.FoodServiceImpl"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T03:57:32.886Z",
+    "executionChecked": true,
+    "rowCount": 1,
+    "preview": [
+      {
+        "service": "ts-food-service"
+      }
+    ],
+    "expected": [
+      {
+        "service": "ts-food-service"
+      }
+    ],
+    "columnTypes": {
+      "service": "string"
+    }
+  },
+  {
+    "id": "S07",
+    "question": "图谱中上游 API 使用了哪些不同的 HTTP 方法？返回 verb。",
+    "level": "simple",
+    "category": "单节点去重",
+    "cypher": "MATCH (a:`上游API`) WHERE a.`图谱版本`=$version RETURN DISTINCT a.`HTTP方法` AS verb",
+    "columns": [
+      "verb"
+    ],
+    "output": "只返回以下列：verb（HTTP 方法，类型 string）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T03:57:32.938Z",
+    "executionChecked": true,
+    "rowCount": 6,
+    "preview": [
+      {
+        "verb": "GET"
+      },
+      {
+        "verb": "DELETE"
+      },
+      {
+        "verb": "PUT"
+      }
+    ],
+    "expected": [
+      {
+        "verb": "GET"
+      },
+      {
+        "verb": "DELETE"
+      },
+      {
+        "verb": "PUT"
+      },
+      {
+        "verb": "POST"
+      },
+      {
+        "verb": "PATCH"
+      },
+      {
+        "verb": "REQUEST"
+      }
+    ],
+    "columnTypes": {
+      "verb": "string"
+    }
+  },
+  {
+    "id": "S08",
+    "question": "列出 email 队列的所属服务名，返回 service。",
+    "level": "simple",
+    "category": "属性过滤",
+    "cypher": "MATCH (q:`消息队列`) WHERE q.`图谱版本`=$version AND q.`队列名称`=$queue RETURN DISTINCT q.`所属服务名` AS service",
+    "columns": [
+      "service"
+    ],
+    "output": "只返回以下列：service（服务名称，类型 string）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "queue": "email"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T03:57:32.994Z",
+    "executionChecked": true,
+    "rowCount": 3,
+    "preview": [
+      {
+        "service": "ts-notification-service"
+      },
+      {
+        "service": "ts-preserve-other-service"
+      },
+      {
+        "service": "ts-preserve-service"
+      }
+    ],
+    "expected": [
+      {
+        "service": "ts-notification-service"
+      },
+      {
+        "service": "ts-preserve-other-service"
+      },
+      {
+        "service": "ts-preserve-service"
+      }
+    ],
+    "columnTypes": {
+      "service": "string"
+    }
+  },
+  {
+    "id": "S09",
+    "question": "有多少个名称以 ts-order 开头的微服务？返回 count。",
+    "level": "simple",
+    "category": "属性过滤计数",
+    "cypher": "MATCH (s:`微服务`) WHERE s.`图谱版本`=$version AND s.`服务名称` STARTS WITH $prefix RETURN count(DISTINCT s.nodeId) AS count",
+    "columns": [
+      "count"
+    ],
+    "output": "只返回以下列：count（去重数量，类型 number）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "prefix": "ts-order"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T03:57:33.062Z",
+    "executionChecked": true,
+    "rowCount": 1,
+    "preview": [
+      {
+        "count": 2
+      }
+    ],
+    "expected": [
+      {
+        "count": 2
+      }
+    ],
+    "columnTypes": {
+      "count": "number"
+    }
+  },
+  {
+    "id": "S10",
+    "question": "foodsearch.controller.FoodController.getAllFood 归属于哪个类？返回全限定类名 class。",
+    "level": "simple",
+    "category": "单跳归属",
+    "cypher": "MATCH (m:`方法`)-[:`归属于`]->(c:`类`) WHERE m.`图谱版本`=$version AND m.`全限定名`=$name RETURN DISTINCT c.`全限定名` AS class",
+    "columns": [
+      "class"
+    ],
+    "output": "只返回以下列：class（类全限定名，类型 string）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "name": "foodsearch.controller.FoodController.getAllFood"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T03:57:33.135Z",
+    "executionChecked": true,
+    "rowCount": 1,
+    "preview": [
+      {
+        "class": "foodsearch.controller.FoodController"
+      }
+    ],
+    "expected": [
+      {
+        "class": "foodsearch.controller.FoodController"
+      }
+    ],
+    "columnTypes": {
+      "class": "string"
+    }
+  },
+  {
+    "id": "M01",
+    "question": "ts-order-service 对外提供哪些入口 API？只返回去重路径 path。",
+    "level": "medium",
+    "category": "入口 API",
+    "cypher": "MATCH (a:`上游API`)-[:`归属于`]->(:`方法`)-[:`归属于`]->(:`类`)-[:`归属于`]->(s:`微服务`) WHERE s.`图谱版本`=$version AND s.`服务名称`=$service RETURN DISTINCT a.`API路径` AS path",
+    "columns": [
+      "path"
+    ],
+    "output": "只返回以下列：path（API 路径字符串，不是图路径对象，类型 string）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "service": "ts-order-service"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T03:57:33.241Z",
+    "executionChecked": true,
+    "rowCount": 12,
+    "preview": [
+      {
+        "path": "/api/v1/orderservice/order/status/{orderId}/{status}"
+      },
+      {
+        "path": "/api/v1/orderservice/order"
+      },
+      {
+        "path": "/api/v1/orderservice/order/query"
+      }
+    ],
+    "expected": [
+      {
+        "path": "/api/v1/orderservice/order/status/{orderId}/{status}"
+      },
+      {
+        "path": "/api/v1/orderservice/order"
+      },
+      {
+        "path": "/api/v1/orderservice/order/query"
+      },
+      {
+        "path": "/api/v1/orderservice/order/admin"
+      },
+      {
+        "path": "/api/v1/orderservice/order/{orderId}"
+      },
+      {
+        "path": "/api/v1/orderservice/welcome"
+      },
+      {
+        "path": "/api/v1/orderservice/order/refresh"
+      },
+      {
+        "path": "/api/v1/orderservice/order/security/{checkDate}/{accountId}"
+      },
+      {
+        "path": "/api/v1/orderservice/order/orderPay/{orderId}"
+      },
+      {
+        "path": "/api/v1/orderservice/order/tickets"
+      },
+      {
+        "path": "/api/v1/orderservice/order/price/{orderId}"
+      },
+      {
+        "path": "/api/v1/orderservice/order/{travelDate}/{trainNumber}"
+      }
+    ],
+    "columnTypes": {
+      "path": "string"
+    }
+  },
+  {
+    "id": "M02",
+    "question": "ts-preserve-service 通过直接 REST 调用依赖哪些服务？返回 service。",
+    "level": "medium",
+    "category": "下游服务",
+    "cypher": "MATCH (s:`微服务`)<-[:`归属于`]-(:`类`)<-[:`归属于`]-(:`方法`)-[:`下游调用`]->(a:`下游API`) WHERE s.`图谱版本`=$version AND s.`服务名称`=$service RETURN DISTINCT a.`目标服务名` AS service",
+    "columns": [
+      "service"
+    ],
+    "output": "只返回以下列：service（服务名称，类型 string）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "service": "ts-preserve-service"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T03:57:33.424Z",
+    "executionChecked": true,
+    "rowCount": 10,
+    "preview": [
+      {
+        "service": "ts-seat-service"
+      },
+      {
+        "service": "ts-assurance-service"
+      },
+      {
+        "service": "ts-basic-service"
+      }
+    ],
+    "expected": [
+      {
+        "service": "ts-seat-service"
+      },
+      {
+        "service": "ts-assurance-service"
+      },
+      {
+        "service": "ts-basic-service"
+      },
+      {
+        "service": "ts-user-service"
+      },
+      {
+        "service": "ts-order-service"
+      },
+      {
+        "service": "ts-travel-service"
+      },
+      {
+        "service": "ts-security-service"
+      },
+      {
+        "service": "ts-consign-service"
+      },
+      {
+        "service": "ts-contacts-service"
+      },
+      {
+        "service": "ts-food-service"
+      }
+    ],
+    "columnTypes": {
+      "service": "string"
+    }
+  },
+  {
+    "id": "M03",
+    "question": "有哪些服务通过直接 REST 调用访问 ts-order-service？返回 service。",
+    "level": "medium",
+    "category": "反向依赖",
+    "cypher": "MATCH (s:`微服务`)<-[:`归属于`]-(:`类`)<-[:`归属于`]-(:`方法`)-[:`下游调用`]->(a:`下游API`) WHERE s.`图谱版本`=$version AND a.`目标服务名`=$target RETURN DISTINCT s.`服务名称` AS service",
+    "columns": [
+      "service"
+    ],
+    "output": "只返回以下列：service（服务名称，类型 string）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "target": "ts-order-service"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T03:57:33.447Z",
+    "executionChecked": true,
+    "rowCount": 8,
+    "preview": [
+      {
+        "service": "ts-admin-order-service"
+      },
+      {
+        "service": "ts-cancel-service"
+      },
+      {
+        "service": "ts-execute-service"
+      }
+    ],
+    "expected": [
+      {
+        "service": "ts-admin-order-service"
+      },
+      {
+        "service": "ts-cancel-service"
+      },
+      {
+        "service": "ts-execute-service"
+      },
+      {
+        "service": "ts-inside-payment-service"
+      },
+      {
+        "service": "ts-preserve-service"
+      },
+      {
+        "service": "ts-rebook-service"
+      },
+      {
+        "service": "ts-seat-service"
+      },
+      {
+        "service": "ts-security-service"
+      }
+    ],
+    "columnTypes": {
+      "service": "string"
+    }
+  },
+  {
+    "id": "M04",
+    "question": "ts-food-service 共提供多少个不同的入口 API 节点？返回 count。",
+    "level": "medium",
+    "category": "聚合统计",
+    "cypher": "MATCH (a:`上游API`)-[:`归属于`]->(:`方法`)-[:`归属于`]->(:`类`)-[:`归属于`]->(s:`微服务`) WHERE s.`图谱版本`=$version AND s.`服务名称`=$service RETURN count(DISTINCT a.nodeId) AS count",
+    "columns": [
+      "count"
+    ],
+    "output": "只返回以下列：count（去重数量，类型 number）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "service": "ts-food-service"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T03:57:33.551Z",
+    "executionChecked": true,
+    "rowCount": 1,
+    "preview": [
+      {
+        "count": 9
+      }
+    ],
+    "expected": [
+      {
+        "count": 9
+      }
+    ],
+    "columnTypes": {
+      "count": "number"
+    }
+  },
+  {
+    "id": "M05",
+    "question": "ts-food-service 直接 REST 调用涉及多少个不同目标服务？返回 count。",
+    "level": "medium",
+    "category": "聚合统计",
+    "cypher": "MATCH (s:`微服务`)<-[:`归属于`]-(:`类`)<-[:`归属于`]-(:`方法`)-[:`下游调用`]->(a:`下游API`) WHERE s.`图谱版本`=$version AND s.`服务名称`=$service RETURN count(DISTINCT a.`目标服务名`) AS count",
+    "columns": [
+      "count"
+    ],
+    "output": "只返回以下列：count（去重数量，类型 number）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "service": "ts-food-service"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T03:57:33.647Z",
+    "executionChecked": true,
+    "rowCount": 1,
+    "preview": [
+      {
+        "count": 3
+      }
+    ],
+    "expected": [
+      {
+        "count": 3
+      }
+    ],
+    "columnTypes": {
+      "count": "number"
+    }
+  },
+  {
+    "id": "M06",
+    "question": "消费 food_delivery 消息的微服务名称是什么？返回 service。",
+    "level": "medium",
+    "category": "MQ 消费归属",
+    "cypher": "MATCH (q:`消息队列`)-[:`消费自`]->(:`方法`)-[:`归属于`]->(:`类`)-[:`归属于`]->(s:`微服务`) WHERE q.`图谱版本`=$version AND q.`队列名称`=$queue RETURN DISTINCT s.`服务名称` AS service",
+    "columns": [
+      "service"
+    ],
+    "output": "只返回以下列：service（服务名称，类型 string）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "queue": "food_delivery"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T03:57:33.739Z",
+    "executionChecked": true,
+    "rowCount": 1,
+    "preview": [
+      {
+        "service": "ts-delivery-service"
+      }
+    ],
+    "expected": [
+      {
+        "service": "ts-delivery-service"
+      }
+    ],
+    "columnTypes": {
+      "service": "string"
+    }
+  },
+  {
+    "id": "M07",
+    "question": "直接通过 MQ 依赖 ts-delivery-service 的服务有哪些？返回 service。",
+    "level": "medium",
+    "category": "MQ 反向依赖",
+    "cypher": "MATCH (s:`微服务`)-[:`消息依赖`]->(t:`微服务`) WHERE s.`图谱版本`=$version AND t.`服务名称`=$target RETURN DISTINCT s.`服务名称` AS service",
+    "columns": [
+      "service"
+    ],
+    "output": "只返回以下列：service（服务名称，类型 string）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "target": "ts-delivery-service"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T03:57:33.761Z",
+    "executionChecked": true,
+    "rowCount": 1,
+    "preview": [
+      {
+        "service": "ts-food-service"
+      }
+    ],
+    "expected": [
+      {
+        "service": "ts-food-service"
+      }
+    ],
+    "columnTypes": {
+      "service": "string"
+    }
+  },
+  {
+    "id": "M08",
+    "question": "ts-preserve-service 直接通过 MQ 依赖哪些服务？返回 service。",
+    "level": "medium",
+    "category": "MQ 正向依赖",
+    "cypher": "MATCH (s:`微服务`)-[:`消息依赖`]->(t:`微服务`) WHERE s.`图谱版本`=$version AND s.`服务名称`=$source RETURN DISTINCT t.`服务名称` AS service",
+    "columns": [
+      "service"
+    ],
+    "output": "只返回以下列：service（服务名称，类型 string）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "source": "ts-preserve-service"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T03:57:33.827Z",
+    "executionChecked": true,
+    "rowCount": 1,
+    "preview": [
+      {
+        "service": "ts-notification-service"
+      }
+    ],
+    "expected": [
+      {
+        "service": "ts-notification-service"
+      }
+    ],
+    "columnTypes": {
+      "service": "string"
+    }
+  },
+  {
+    "id": "M09",
+    "question": "foodsearch.controller.FoodController.getAllFood 直接通过调用或接口调用连接哪些方法？返回全限定名 method。",
+    "level": "medium",
+    "category": "方法调用",
+    "cypher": "MATCH (m:`方法`)-[:`调用`|`接口调用`]->(t:`方法`) WHERE m.`图谱版本`=$version AND m.`全限定名`=$method RETURN DISTINCT t.`全限定名` AS method",
+    "columns": [
+      "method"
+    ],
+    "output": "只返回以下列：method（方法全限定名，类型 string）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "method": "foodsearch.controller.FoodController.getAllFood"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T03:57:33.898Z",
+    "executionChecked": true,
+    "rowCount": 1,
+    "preview": [
+      {
+        "method": "foodsearch.service.FoodServiceImpl.getAllFood"
+      }
+    ],
+    "expected": [
+      {
+        "method": "foodsearch.service.FoodServiceImpl.getAllFood"
+      }
+    ],
+    "columnTypes": {
+      "method": "string"
+    }
+  },
+  {
+    "id": "M10",
+    "question": "从 foodsearch.controller.FoodController.getAllFood 出发，在两跳方法调用或接口调用范围内有哪些可达方法？不包含零跳，返回 method。",
+    "level": "medium",
+    "category": "多跳调用",
+    "cypher": "MATCH p=(m:`方法`)-[:`调用`|`接口调用`*1..2]->(t:`方法`) WHERE m.`全限定名`=$method AND all(n IN nodes(p) WHERE n.`图谱版本`=$version) RETURN DISTINCT t.`全限定名` AS method",
+    "columns": [
+      "method"
+    ],
+    "output": "只返回以下列：method（方法全限定名，类型 string）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "method": "foodsearch.controller.FoodController.getAllFood"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T03:57:33.980Z",
+    "executionChecked": true,
+    "rowCount": 1,
+    "preview": [
+      {
+        "method": "foodsearch.service.FoodServiceImpl.getAllFood"
+      }
+    ],
+    "expected": [
+      {
+        "method": "foodsearch.service.FoodServiceImpl.getAllFood"
+      }
+    ],
+    "columnTypes": {
+      "method": "string"
+    }
+  },
+  {
+    "id": "M11",
+    "question": "ts-travel-service 的不同下游 API 使用了哪些 HTTP 方法？返回 verb。",
+    "level": "medium",
+    "category": "跨归属查询",
+    "cypher": "MATCH (s:`微服务`)<-[:`归属于`]-(:`类`)<-[:`归属于`]-(:`方法`)-[:`下游调用`]->(a:`下游API`) WHERE s.`图谱版本`=$version AND s.`服务名称`=$service RETURN DISTINCT a.`HTTP方法` AS verb",
+    "columns": [
+      "verb"
+    ],
+    "output": "只返回以下列：verb（HTTP 方法，类型 string）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "service": "ts-travel-service"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T03:57:34.068Z",
+    "executionChecked": true,
+    "rowCount": 2,
+    "preview": [
+      {
+        "verb": "POST"
+      },
+      {
+        "verb": "GET"
+      }
+    ],
+    "expected": [
+      {
+        "verb": "POST"
+      },
+      {
+        "verb": "GET"
+      }
+    ],
+    "columnTypes": {
+      "verb": "string"
+    }
+  },
+  {
+    "id": "M12",
+    "question": "ts-food-service 中有多少个不同方法直接调用下游 API？返回 count。",
+    "level": "medium",
+    "category": "聚合统计",
+    "cypher": "MATCH (s:`微服务`)<-[:`归属于`]-(:`类`)<-[:`归属于`]-(m:`方法`)-[:`下游调用`]->(:`下游API`) WHERE s.`图谱版本`=$version AND s.`服务名称`=$service RETURN count(DISTINCT m.nodeId) AS count",
+    "columns": [
+      "count"
+    ],
+    "output": "只返回以下列：count（去重数量，类型 number）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "service": "ts-food-service"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T03:57:34.162Z",
+    "executionChecked": true,
+    "rowCount": 1,
+    "preview": [
+      {
+        "count": 1
+      }
+    ],
+    "expected": [
+      {
+        "count": 1
+      }
+    ],
+    "columnTypes": {
+      "count": "number"
+    }
+  },
+  {
+    "id": "H01",
+    "question": "ts-food-service 直接通过 REST 或 MQ 依赖的目标服务，合并去重后共有多少个？只返回 count。",
+    "level": "complex",
+    "category": "RPC＋MQ 联合聚合",
+    "cypher": "MATCH (s:`微服务`) WHERE s.`图谱版本`=$version AND s.`服务名称`=$service OPTIONAL MATCH (s)<-[:`归属于`]-(:`类`)<-[:`归属于`]-(:`方法`)-[:`下游调用`]->(a:`下游API`) WITH s,collect(DISTINCT a.`目标服务名`) AS rest OPTIONAL MATCH (s)-[:`消息依赖`]->(t:`微服务`) WITH rest,collect(DISTINCT t.`服务名称`) AS mq WITH rest+mq AS services UNWIND services AS service RETURN count(DISTINCT service) AS count",
+    "columns": [
+      "count"
+    ],
+    "output": "只返回以下列：count（去重数量，类型 number）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "service": "ts-food-service"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T04:07:38.458Z",
+    "executionChecked": true,
+    "rowCount": 1,
+    "preview": [
+      {
+        "count": 4
+      }
+    ],
+    "expected": [
+      {
+        "count": 4
+      }
+    ],
+    "columnTypes": {
+      "count": "number"
+    }
+  },
+  {
+    "id": "H02",
+    "question": "ts-preserve-service 的每个 MQ 目标服务是否也被它直接通过 REST 调用？返回 service 和布尔值 hasRest。",
+    "level": "complex",
+    "category": "RPC＋MQ 交叉验证",
+    "cypher": "MATCH (s:`微服务`)-[:`消息依赖`]->(t:`微服务`) WHERE s.`图谱版本`=$version AND s.`服务名称`=$service OPTIONAL MATCH (s)<-[:`归属于`]-(:`类`)<-[:`归属于`]-(:`方法`)-[:`下游调用`]->(a:`下游API`) WHERE a.`目标服务名`=t.`服务名称` RETURN t.`服务名称` AS service,count(DISTINCT a.nodeId)>0 AS hasRest",
+    "columns": [
+      "service",
+      "hasRest"
+    ],
+    "output": "只返回以下列：service（服务名称，类型 string）、hasRest（是否同时存在 REST 依赖的布尔值，类型 boolean）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "service": "ts-preserve-service"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T04:06:41.691Z",
+    "executionChecked": true,
+    "rowCount": 1,
+    "preview": [
+      {
+        "hasRest": false,
+        "service": "ts-notification-service"
+      }
+    ],
+    "expected": [
+      {
+        "hasRest": false,
+        "service": "ts-notification-service"
+      }
+    ],
+    "columnTypes": {
+      "service": "string",
+      "hasRest": "boolean"
+    }
+  },
+  {
+    "id": "H03",
+    "question": "哪些不同的服务通过直接 REST 或 MQ 依赖 ts-delivery-service？返回去重 service。",
+    "level": "complex",
+    "category": "异构反向依赖",
+    "cypher": "MATCH (s:`微服务`)<-[:`归属于`]-(:`类`)<-[:`归属于`]-(:`方法`)-[:`下游调用`]->(a:`下游API`) WHERE s.`图谱版本`=$version AND a.`目标服务名`=$target RETURN DISTINCT s.`服务名称` AS service UNION MATCH (s:`微服务`)-[:`消息依赖`]->(t:`微服务`) WHERE s.`图谱版本`=$version AND t.`服务名称`=$target RETURN DISTINCT s.`服务名称` AS service",
+    "columns": [
+      "service"
+    ],
+    "output": "只返回以下列：service（服务名称，类型 string）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "target": "ts-delivery-service"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T04:06:41.834Z",
+    "executionChecked": true,
+    "rowCount": 1,
+    "preview": [
+      {
+        "service": "ts-food-service"
+      }
+    ],
+    "expected": [
+      {
+        "service": "ts-food-service"
+      }
+    ],
+    "columnTypes": {
+      "service": "string"
+    }
+  },
+  {
+    "id": "H04",
+    "question": "food_delivery 完整消息链路连接哪些发送方法与消费方法？匹配发布和路由的路由键，返回 sender、receiver 的全限定名。",
+    "level": "complex",
+    "category": "MQ 完整链路",
+    "cypher": "MATCH (s:`方法`)-[pub:`发布至`]->(:`消息交换机`)-[route:`路由至`]->(q:`消息队列`)-[:`消费自`]->(r:`方法`) WHERE s.`图谱版本`=$version AND q.`队列名称`=$queue AND pub.`路由键`=route.`路由键` RETURN DISTINCT s.`全限定名` AS sender,r.`全限定名` AS receiver",
+    "columns": [
+      "sender",
+      "receiver"
+    ],
+    "output": "只返回以下列：sender（发布方法全限定名，类型 string）、receiver（消费方法全限定名，类型 string）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "queue": "food_delivery"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T03:57:34.470Z",
+    "executionChecked": true,
+    "rowCount": 1,
+    "preview": [
+      {
+        "receiver": "delivery.mq.RabbitReceive.void process",
+        "sender": "foodsearch.mq.RabbitSend.send"
+      }
+    ],
+    "expected": [
+      {
+        "receiver": "delivery.mq.RabbitReceive.void process",
+        "sender": "foodsearch.mq.RabbitSend.send"
+      }
+    ],
+    "columnTypes": {
+      "sender": "string",
+      "receiver": "string"
+    }
+  },
+  {
+    "id": "H05",
+    "question": "哪些微服务发布消息到 email 队列？沿方法归属定位发送方，且匹配路由键，返回 service。",
+    "level": "complex",
+    "category": "MQ 发布溯源",
+    "cypher": "MATCH (s:`微服务`)<-[:`归属于`]-(:`类`)<-[:`归属于`]-(m:`方法`)-[pub:`发布至`]->(:`消息交换机`)-[route:`路由至`]->(q:`消息队列`) WHERE s.`图谱版本`=$version AND q.`队列名称`=$queue AND pub.`路由键`=route.`路由键` RETURN DISTINCT s.`服务名称` AS service",
+    "columns": [
+      "service"
+    ],
+    "output": "只返回以下列：service（服务名称，类型 string）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "queue": "email"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T03:57:34.603Z",
+    "executionChecked": true,
+    "rowCount": 3,
+    "preview": [
+      {
+        "service": "ts-preserve-other-service"
+      },
+      {
+        "service": "ts-notification-service"
+      },
+      {
+        "service": "ts-preserve-service"
+      }
+    ],
+    "expected": [
+      {
+        "service": "ts-preserve-other-service"
+      },
+      {
+        "service": "ts-notification-service"
+      },
+      {
+        "service": "ts-preserve-service"
+      }
+    ],
+    "columnTypes": {
+      "service": "string"
+    }
+  },
+  {
+    "id": "H06",
+    "question": "修改 foodsearch.mq.RabbitSend.send，四跳方法调用范围内潜在影响哪些上游 API？只返回去重 path。",
+    "level": "complex",
+    "category": "反向影响",
+    "cypher": "MATCH (a:`上游API`)-[:`归属于`]->(entry:`方法`) MATCH p=(entry)-[:`调用`|`接口调用`*0..4]->(m:`方法`) WHERE m.`全限定名`=$method AND all(n IN nodes(p) WHERE n.`图谱版本`=$version) AND a.`图谱版本`=$version RETURN DISTINCT a.`API路径` AS path",
+    "columns": [
+      "path"
+    ],
+    "output": "只返回以下列：path（API 路径字符串，不是图路径对象，类型 string）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "method": "foodsearch.mq.RabbitSend.send"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T04:06:42.038Z",
+    "executionChecked": true,
+    "rowCount": 2,
+    "preview": [
+      {
+        "path": "/api/v1/foodservice/orders"
+      },
+      {
+        "path": "/api/v1/foodservice/createOrderBatch"
+      }
+    ],
+    "expected": [
+      {
+        "path": "/api/v1/foodservice/orders"
+      },
+      {
+        "path": "/api/v1/foodservice/createOrderBatch"
+      }
+    ],
+    "columnTypes": {
+      "path": "string"
+    }
+  },
+  {
+    "id": "H07",
+    "question": "foodsearch.controller.FoodController.getAllFood 在四跳调用或接口调用内可访问哪些下游服务？返回 service。",
+    "level": "complex",
+    "category": "端到端下游发现",
+    "cypher": "MATCH (m:`方法`) WHERE m.`图谱版本`=$version AND m.`全限定名`=$method MATCH p=(m)-[:`调用`|`接口调用`*0..4]->(x:`方法`)-[:`下游调用`]->(a:`下游API`) WHERE all(n IN nodes(p) WHERE n.`图谱版本`=$version) RETURN DISTINCT a.`目标服务名` AS service",
+    "columns": [
+      "service"
+    ],
+    "output": "只返回以下列：service（服务名称，类型 string）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "method": "foodsearch.controller.FoodController.getAllFood"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T03:57:34.750Z",
+    "executionChecked": true,
+    "rowCount": 3,
+    "preview": [
+      {
+        "service": "ts-train-food-service"
+      },
+      {
+        "service": "ts-travel-service"
+      },
+      {
+        "service": "ts-station-food-service"
+      }
+    ],
+    "expected": [
+      {
+        "service": "ts-train-food-service"
+      },
+      {
+        "service": "ts-travel-service"
+      },
+      {
+        "service": "ts-station-food-service"
+      }
+    ],
+    "columnTypes": {
+      "service": "string"
+    }
+  },
+  {
+    "id": "H08",
+    "question": "哪些不同的服务通过直接 REST 或 MQ 依赖 ts-notification-service？返回去重 service。",
+    "level": "complex",
+    "category": "异构反向依赖",
+    "cypher": "MATCH (s:`微服务`)<-[:`归属于`]-(:`类`)<-[:`归属于`]-(:`方法`)-[:`下游调用`]->(a:`下游API`) WHERE s.`图谱版本`=$version AND a.`目标服务名`=$target RETURN DISTINCT s.`服务名称` AS service UNION MATCH (s:`微服务`)-[:`消息依赖`]->(t:`微服务`) WHERE s.`图谱版本`=$version AND t.`服务名称`=$target RETURN DISTINCT s.`服务名称` AS service",
+    "columns": [
+      "service"
+    ],
+    "output": "只返回以下列：service（服务名称，类型 string）。按问题要求去重，不增加其他列。",
+    "parameters": {
+      "version": "master-to-dd92845",
+      "target": "ts-notification-service"
+    },
+    "graphVersion": "master-to-dd92845",
+    "origin": "独立参考题（AI 编写，待人工复核）",
+    "checkedAt": "2026-10-14T03:57:34.897Z",
+    "executionChecked": true,
+    "rowCount": 4,
+    "preview": [
+      {
+        "service": "ts-notification-service"
+      },
+      {
+        "service": "ts-preserve-other-service"
+      },
+      {
+        "service": "ts-preserve-service"
+      }
+    ],
+    "expected": [
+      {
+        "service": "ts-notification-service"
+      },
+      {
+        "service": "ts-preserve-other-service"
+      },
+      {
+        "service": "ts-preserve-service"
+      },
+      {
+        "service": "ts-delivery-service"
+      }
+    ],
+    "columnTypes": {
+      "service": "string"
+    }
+  }
+]

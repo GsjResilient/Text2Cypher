@@ -1,0 +1,6 @@
+列出所有微服务
+getAllFood 方法调用了哪些下游服务？
+foodsearch.service.FoodServiceImpl.getAllFood 在四跳方法调用内调用哪些下游服务？
+ts-food-service 有哪些 RPC 和 MQ 跨服务依赖？请分别查询并展示拓扑。
+food_delivery 队列的完整发布、路由、消费链路是什么？
+修改 foodsearch.service.FoodServiceImpl.getAllFood 潜在影响哪些四跳内的上游 API？

@@ -1,0 +1,14 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {mkdtemp} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
+import path from 'node:path';
+import {execFile} from 'node:child_process';
+import {promisify} from 'node:util';
+process.env.DATA_DIR=await mkdtemp(path.join(tmpdir(),'codegraph-tests-'));
+const {save,load,update}=await import('../src/store.js');
+const {JobManager}=await import('../src/jobs.js');
+test('原子存储：并发读改写不丢失更新',async()=>{await save('counter.json',{value:0});await Promise.all(Array.from({length:30},()=>update('counter.json',v=>({value:v.value+1}))));assert.equal((await load('counter.json')).value,30);});
+test('不同进程同时更新也不丢失数据',async()=>{await save('cross-process.json',{value:0});const source=new URL('../src/store.js',import.meta.url).href;const code=`import {update} from ${JSON.stringify(source)};for(let i=0;i<10;i++)await update('cross-process.json',v=>({value:v.value+1}));`;await Promise.all(Array.from({length:3},()=>promisify(execFile)(process.execPath,['--input-type=module','-e',code],{env:process.env})));assert.equal((await load('cross-process.json')).value,30);});
+test('批量任务：一题失败后继续运行，最终标记部分完成',async()=>{const manager=new JobManager(async(question)=>({id:question,question,status:question==='bad'?'error':'success'}));const job=manager.create([{question:'bad',level:'simple'},{question:'good',level:'simple'}]);await manager.queue;const result=manager.snapshot(job.id);assert.equal(result.completed,2);assert.equal(result.status,'partial');});
+test('批量任务取消：停止后续题目，保留已完成结果',async()=>{let release;let started;const start=new Promise(r=>started=r);const manager=new JobManager(async question=>{started();await new Promise(r=>release=r);return {question,status:'success'};});const job=manager.create([{question:'one',level:'simple'},{question:'two',level:'simple'}]);await start;manager.cancel(job.id);release();await manager.queue;assert.equal(manager.snapshot(job.id).status,'cancelled');assert.equal(manager.snapshot(job.id).completed,1);});
